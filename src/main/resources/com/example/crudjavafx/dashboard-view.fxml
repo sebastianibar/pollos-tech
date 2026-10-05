@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
+
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Region?>
+
+<?import javafx.scene.layout.HBox?>
+<BorderPane fx:controller="com.example.crudjavafx.controller.DashboardController"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            prefHeight="600.0" prefWidth="900.0"
+            styleClass="main-container">
+
+    <left>
+        <VBox styleClass="sidebar" alignment="TOP_CENTER" spacing="20">
+            <padding>
+                <Insets top="20" right="10" bottom="20" left="10" />
+            </padding>
+
+            <Label text="PollosTech" styleClass="sidebar-title">
+
+            </Label>
+
+            <VBox spacing="10" alignment="CENTER" VBox.vgrow="ALWAYS">
+                <fx:define>
+                    <ToggleGroup fx:id="navGroup" />
+                </fx:define>
+                <ToggleButton text="Ventas" onAction="#irAGestionVenta" styleClass="sidebar-button" toggleGroup="$navGroup" contentDisplay="TOP">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-cart" styleClass="sidebar-icon" />
+                    </graphic>
+                </ToggleButton>
+                <ToggleButton text="Compras" styleClass="sidebar-button" onAction="#irAGestionCompra" toggleGroup="$navGroup" contentDisplay="TOP">
+                    <graphic><FontIcon iconLiteral="mdi-cart-plus" styleClass="sidebar-icon" /></graphic>
+                </ToggleButton>
+                <ToggleButton text="Personal" styleClass="sidebar-button" toggleGroup="$navGroup" contentDisplay="TOP"
+                              onAction="#irAGestionStaff"> <graphic>
+                    <FontIcon iconLiteral="mdi-account-multiple"  styleClass="sidebar-icon" />
+                </graphic>
+                </ToggleButton>
+                <ToggleButton text="Productos" styleClass="sidebar-button"  onAction="#irAGestionProduct" toggleGroup="$navGroup" contentDisplay="TOP">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-package-variant" styleClass="sidebar-icon" />
+                    </graphic>
+                </ToggleButton>
+                <ToggleButton text="Clientes" styleClass="sidebar-button" onAction="#irAGestionCustomer" toggleGroup="$navGroup" contentDisplay="TOP">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-account" styleClass="sidebar-icon" />
+                    </graphic>
+                </ToggleButton>
+                <ToggleButton text="Proveedores" styleClass="sidebar-button" onAction="#irAGestionProveedor" toggleGroup="$navGroup" contentDisplay="TOP">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-truck" styleClass="sidebar-icon" />
+                    </graphic>
+                </ToggleButton>
+                <ToggleButton text="Dashboard" styleClass="sidebar-button" toggleGroup="$navGroup" contentDisplay="TOP" selected="true">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-view-dashboard" styleClass="sidebar-icon" />
+                    </graphic>
+                </ToggleButton>
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Button fx:id="btnSalir"
+                        mnemonicParsing="false"
+                        onAction="#cerrarSesion"
+                        styleClass="btn-salir"
+                        text="Cerrar Sesión">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi-exit-to-app" styleClass="sidebar-icon"/>
+                    </graphic>
+                </Button>
+
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <AnchorPane styleClass="main-content-pane">
+            <Label fx:id="bienvenidaText" styleClass="welcome-header"
+                   text="Hola, Usuario!"
+                   AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="30.0" />
+
+            <HBox spacing="30" AnchorPane.topAnchor="70.0" AnchorPane.leftAnchor="30.0"
+                  AnchorPane.rightAnchor="30.0" AnchorPane.bottomAnchor="30.0">
+
+                <VBox HBox.hgrow="ALWAYS" spacing="10" style="-fx-background-color: transparent;">
+                    <Label text="Pedidos pendientes" styleClass="section-title" style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+                    <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+                        <content>
+                            <VBox fx:id="containerPendientes" spacing="15" style="-fx-background-color: transparent;">
+                            </VBox>
+                        </content>
+                    </ScrollPane>
+                </VBox>
+
+                <VBox prefWidth="350" minWidth="300" spacing="10" style="-fx-background-color: #333333; -fx-background-radius: 15; -fx-padding: 15;">
+                    <Label text="Pedidos completados" styleClass="section-title" style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+                    <VBox fx:id="containerCompletados" spacing="15">
+                    </VBox>
+                </VBox>
+
+            </HBox>
+        </AnchorPane>
+    </center>
+</BorderPane>

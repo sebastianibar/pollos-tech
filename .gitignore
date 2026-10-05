@@ -1,0 +1,48 @@
+# ======================================================
+# Archivos de Compilación de Maven y de IntelliJ
+# ======================================================
+
+# Directorio de salida de compilación de Maven
+/target/
+
+# Directorio de salida de compilación de IntelliJ
+/out/
+
+# ======================================================
+# Archivos del IDE (IntelliJ IDEA)
+# ======================================================
+
+# Archivos de configuración específicos del usuario/IDE
+.idea/
+*.iml
+
+# ======================================================
+# Archivos del Sistema Operativo
+# ======================================================
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# ======================================================
+# Archivos comunes de Java
+# ======================================================
+
+# Archivos de Log
+*.log
+*.log.*
+
+# Paquetes JAR/WAR
+*.jar
+*.war
+
+
+# Archivos de Docker y Base de Datos
+
+postgres-data/data/
+db_data/
+
+# Archivos de configuración de WSL (si creaste el .wslconfig en esa ruta)
+.wslconfig

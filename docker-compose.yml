@@ -1,0 +1,29 @@
+services:
+  db-pos:
+    image: postgres:15-alpine
+    container_name: pos_postgres_container
+    restart: always
+    environment:
+      - POSTGRES_USER=marj
+      - POSTGRES_PASSWORD=marj
+      - POSTGRES_DB=pollosTech
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@pollostech.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    depends_on:
+      - db-pos
+
+volumes:
+  db_data:

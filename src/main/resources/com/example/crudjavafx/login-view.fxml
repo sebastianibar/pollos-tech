@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.crudjavafx.controller.LoginController"
+            prefHeight="500.0" prefWidth="700.0"
+            styleClass="login-background">
+
+    <VBox alignment="CENTER" spacing="20"
+          AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0"
+          AnchorPane.topAnchor="60.0" AnchorPane.bottomAnchor="60.0"
+          styleClass="login-card">
+
+        <padding>
+            <Insets top="40" right="40" bottom="40" left="40"/>
+        </padding>
+
+        <VBox alignment="CENTER" spacing="10">
+            <Label text="PollosTech" styleClass="login-title"/>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@logo_pollostech.png" />
+                </image>
+            </ImageView>
+        </VBox>
+
+        <VBox spacing="15" maxWidth="400">
+            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="input-container">
+                <FontIcon iconLiteral="mdi-account" iconColor="#9A9A9A" iconSize="20"/>
+                <TextField fx:id="userText" promptText="Usuario" styleClass="login-input" HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="input-container">
+                <FontIcon iconLiteral="mdi-lock" iconColor="#9A9A9A" iconSize="20"/>
+                <PasswordField fx:id="passwdText" promptText="Contraseña" styleClass="login-input" HBox.hgrow="ALWAYS"/>
+            </HBox>
+
+
+        </VBox>
+
+        <Button text="INGRESAR" onAction="#ingresar" styleClass="login-button" maxWidth="400"/>
+
+    </VBox>
+</AnchorPane>

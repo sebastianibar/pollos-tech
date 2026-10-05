@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:controller="com.example.crudjavafx.controller.ComprasController"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            prefHeight="700.0" prefWidth="1000.0"
+            styleClass="main-container">
+
+    <left>
+        <VBox styleClass="sidebar" alignment="TOP_CENTER" spacing="20">
+            <padding> <Insets top="20" right="10" bottom="20" left="10" /> </padding>
+            <Label text="PollosTech" styleClass="sidebar-title">
+            </Label>
+            <VBox spacing="10" alignment="CENTER" VBox.vgrow="ALWAYS">
+                <fx:define> <ToggleGroup fx:id="navGroup" /> </fx:define>
+                <ToggleButton text="Ventas" styleClass="sidebar-button" toggleGroup="$navGroup" contentDisplay="TOP" onAction="#irAGestionVenta">
+                    <graphic><FontIcon iconLiteral="mdi-cart" styleClass="sidebar-icon" /></graphic>
+                </ToggleButton>
+                <ToggleButton text="Compras" styleClass="sidebar-button" toggleGroup="$navGroup" contentDisplay="TOP" selected="true" onAction="#irAGestionCompra">
+                    <graphic><FontIcon iconLiteral="mdi-cart-plus" styleClass="sidebar-icon" /></graphic>
+                </ToggleButton>
+                <ToggleButton text="Personal" styleClass="sidebar-button" toggleGroup="$navGroup" contentDisplay="TOP" onAction="#irAGestionStaff">
+                    <graphic><FontIcon iconLiteral="mdi-account-multiple" styleClass="sidebar-icon" /></graphic>
+                </ToggleButton>
+                <ToggleButton text="Productos" styleClass="sidebar-button" toggleGroup="$navGroup" contentDisplay="TOP" onAction="#irAGestionProduct">
+                    <graphic><FontIcon iconLiteral="mdi-package-variant" styleClass="sidebar-icon" /></graphic>
+                </ToggleButton>
+                <ToggleButton text="Clientes" styleClass="sidebar-button" toggleGroup="$navGroup" contentDisplay="TOP" onAction="#irAGestionCustomer">
+                    <graphic><FontIcon iconLiteral="mdi-account" styleClass="sidebar-icon" /></graphic>
+                </ToggleButton>
+                <ToggleButton text="Proveedores" styleClass="sidebar-button" onAction="#irAGestionProveedor" toggleGroup="$navGroup" contentDisplay="TOP">
+                    <graphic><FontIcon iconLiteral="mdi-truck" styleClass="sidebar-icon" /></graphic>
+                </ToggleButton>
+                <ToggleButton text="Dashboard" styleClass="sidebar-button" toggleGroup="$navGroup" contentDisplay="TOP" onAction="#irADashboard">
+                    <graphic><FontIcon iconLiteral="mdi-view-dashboard" styleClass="sidebar-icon" /></graphic>
+                </ToggleButton>
+                <Region VBox.vgrow="ALWAYS" />
+                <Button fx:id="btnSalir" mnemonicParsing="false" onAction="#cerrarSesion" styleClass="btn-salir" text="Cerrar Sesión">
+                    <graphic> <FontIcon iconLiteral="mdi-exit-to-app" styleClass="sidebar-icon"/> </graphic>
+                </Button>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <AnchorPane styleClass="main-content-pane">
+            <HBox spacing="20" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0"
+                  AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="20.0">
+
+                <VBox spacing="10" HBox.hgrow="ALWAYS" styleClass="content-area">
+                    <Label text="Catálogo de Productos" styleClass="content-title"/>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <FontIcon iconLiteral="mdi-magnify" iconColor="white" iconSize="20"/>
+                        <TextField fx:id="txtBuscarProducto" promptText="Buscar por nombre o código..." HBox.hgrow="ALWAYS"/>
+                    </HBox>
+
+                    <TableView fx:id="tablaCatalogo" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colCatImagen" text="Empresa"/>
+                            <TableColumn fx:id="colCatDesc" text="Producto" prefWidth="200"/>
+                            <TableColumn fx:id="colCatCategoria" text="Categoría" prefWidth="100"/>
+                            <TableColumn fx:id="colCatPrecio" text="Precio Venta" prefWidth="80"/>
+                            <TableColumn fx:id="colCatStock" text="Stock Actual" prefWidth="80"/>
+                        </columns>
+                        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                    </TableView>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Costo Unitario:" style="-fx-text-fill: white;"/>
+                        <TextField fx:id="txtCostoUnitario" promptText="0.00" prefWidth="120"/>
+                        <Button text="Agregar al Carrito" onAction="#agregarAlCarrito" styleClass="button-limpiar" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="10" prefWidth="450" styleClass="content-area">
+                    <Label text="Carrito de Compra" styleClass="content-title"/>
+
+                    <TableView fx:id="tablaCarrito" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colCartDesc" text="Producto" prefWidth="150"/>
+                            <TableColumn fx:id="colCartCant" text="Cant." prefWidth="50"/>
+                            <TableColumn fx:id="colCartCosto" text="Costo Unit." prefWidth="80"/>
+                            <TableColumn fx:id="colCartTotal" text="Subtotal" prefWidth="80"/>
+                        </columns>
+                        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                    </TableView>
+
+                    <Button text="Quitar Seleccionado" onAction="#quitarDelCarrito" styleClass="button-eliminar" maxWidth="Infinity"/>
+
+                    <Label text="Proveedor:" style="-fx-text-fill: #fff;"/>
+                    <ComboBox fx:id="cmbProveedor" promptText="Seleccione Proveedor..." maxWidth="Infinity"/>
+
+                    <VBox styleClass="card">
+                        <Label text="COSTO TOTAL:" styleClass="card-title"/>
+                        <Label fx:id="lblTotal" styleClass="card-value"/>
+                    </VBox>
+
+                    <Button text="REGISTRAR COMPRA" onAction="#finalizarCompra" styleClass="button-guardar" prefHeight="50" maxWidth="Infinity"/>
+                </VBox>
+            </HBox>
+        </AnchorPane>
+    </center>
+</BorderPane>
