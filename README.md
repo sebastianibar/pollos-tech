@@ -100,12 +100,13 @@ JavaFX viene incluido en el `.jar` de la versión publicada, así que no necesit
 
 ## Contexto
 
-Proyecto desarrollado en equipo en la Universidad de Sonora. Originalmente fue un proyecto de la materia de bases de datos y después se usó como plantilla para el proyecto final de Desarrollo de Sistemas III.
+Originalmente fue un proyecto de la materia de bases de datos y después se usó como plantilla para el proyecto final de Desarrollo de Sistemas III.
 
-**Equipo:** Sebastián Ibarra Padilla, *(agregar a tus compañeros)*
+## Equipo
 
-**Mi participación:** *(describe aquí qué parte hiciste)*
-
-## Autor
-
-**Sebastián Ibarra Padilla** · [GitHub](https://github.com/TU-USUARIO)
+| Integrante | GitHub |
+|------------|--------|
+| **Josué Martínez** | [@Lalocarrito](https://github.com/Lalocarrito) |
+| **Sebastian Ibarra** | [@sebastianibar](https://github.com/sebastianibar) |
+| **Santiago Pérez** | [@SantiPerez19](https://github.com/SantiPerez19) |
+| **Andrés Leyva** | [@AndresJLS](https://github.com/AndresJLS) |
